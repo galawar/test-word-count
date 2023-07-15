@@ -25,7 +25,7 @@ class TestWordCount {
 
 	public function settings() {
 		add_settings_section(
-			'wcp_location_section',
+			'wcp_main_section',
 			null,
 			null,
 			self::OPTIONS_PAGE
@@ -37,7 +37,7 @@ class TestWordCount {
 			'Display location',
 			array( $this, 'locationHTML' ),
 			self::OPTIONS_PAGE,
-			'wcp_location_section'
+			'wcp_main_section'
 		);
 
 		register_setting(
@@ -55,7 +55,7 @@ class TestWordCount {
 			'Headline text',
 			array( $this, 'headlineHTML' ),
 			self::OPTIONS_PAGE,
-			'wcp_location_section'
+			'wcp_main_section'
 		);
 
 		register_setting(
@@ -64,6 +64,24 @@ class TestWordCount {
 			array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'default' => 'Post satistics'
+			)
+		);
+
+		// register "Word count" field.
+		add_settings_field(
+			'wcp_wordcount',
+			'Word count',
+			array( $this, 'wordcountHTML' ),
+			self::OPTIONS_PAGE,
+			'wcp_main_section'
+		);
+
+		register_setting(
+			self::OPTION_GROUP,
+			'wcp_wordcount',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default' => '1'
 			)
 		);
 
@@ -81,6 +99,12 @@ class TestWordCount {
 	public function headlineHTML() {
 		?>
 		<input type="text" name="wcp_headline" value="<?php echo esc_attr( get_option( 'wcp_headline' ) ); ?>">
+		<?php
+	}
+
+	public function wordcountHTML() {
+		?>
+		<input type="checkbox" name="wcp_wordcount" value="1" <?php checked( get_option( 'wcp_wordcount' ), '1' ); ?> >
 		<?php
 	}
 
