@@ -71,9 +71,10 @@ class TestWordCount {
 		add_settings_field(
 			'wcp_wordcount',
 			'Word count',
-			array( $this, 'wordcountHTML' ),
+			array( $this, 'checkboxHTML' ),
 			self::OPTIONS_PAGE,
-			'wcp_main_section'
+			'wcp_main_section',
+			array( 'name' => 'wcp_wordcount' )
 		);
 
 		register_setting(
@@ -89,9 +90,10 @@ class TestWordCount {
 		add_settings_field(
 			'wcp_charcount',
 			'Characters count',
-			array( $this, 'charcountHTML' ),
+			array( $this, 'checkboxHTML' ),
 			self::OPTIONS_PAGE,
-			'wcp_main_section'
+			'wcp_main_section',
+			array( 'name' => 'wcp_charcount' )
 		);
 
 		register_setting(
@@ -107,9 +109,10 @@ class TestWordCount {
 		add_settings_field(
 			'wcp_readtime',
 			'Read time',
-			array( $this, 'readtimeHTML' ),
+			array( $this, 'checkboxHTML' ),
 			self::OPTIONS_PAGE,
-			'wcp_main_section'
+			'wcp_main_section',
+			array( 'name' => 'wcp_readtime' )
 		);
 
 		register_setting(
@@ -138,21 +141,12 @@ class TestWordCount {
 		<?php
 	}
 
-	public function wordcountHTML() {
+	public function checkboxHTML( $args ) {
 		?>
-		<input type="checkbox" name="wcp_wordcount" value="1" <?php checked( get_option( 'wcp_wordcount' ), '1' ); ?> >
-		<?php
-	}
-
-	public function charcountHTML() {
-		?>
-		<input type="checkbox" name="wcp_charcount" value="1" <?php checked( get_option( 'wcp_charcount' ), '1' ); ?> >
-		<?php
-	}
-
-		public function readtimeHTML() {
-		?>
-		<input type="checkbox" name="wcp_readtime" value="1" <?php checked( get_option( 'wcp_readtime' ), '1' ); ?> >
+			<input type="checkbox" value="1"
+						 name="<?php echo $args['name'] ?>"
+						 <?php checked( get_option( $args['name'] ), '1' ); ?>
+			>
 		<?php
 	}
 
