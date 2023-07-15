@@ -24,7 +24,6 @@ class TestWordCount {
 	}
 
 	public function settings() {
-		// register "Display location" field.
 		add_settings_section(
 			'wcp_location_section',
 			null,
@@ -32,6 +31,7 @@ class TestWordCount {
 			self::OPTIONS_PAGE
 		);
 
+		// register "Display location" field.
 		add_settings_field(
 			'wcp_location',
 			'Display location',
@@ -48,6 +48,25 @@ class TestWordCount {
 				'default' => '0'
 			)
 		);
+
+		// register "Headline" field.
+		add_settings_field(
+			'wcp_headline',
+			'Headline text',
+			array( $this, 'headlineHTML' ),
+			self::OPTIONS_PAGE,
+			'wcp_location_section'
+		);
+
+		register_setting(
+			self::OPTION_GROUP,
+			'wcp_headline',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default' => 'Post satistics'
+			)
+		);
+
 	}
 
 	public function locationHTML() {
@@ -56,6 +75,12 @@ class TestWordCount {
 			<option value="0" <?php selected( get_option( 'wcp_location' ), '0' ); ?> >Beginning of post</option>
 			<option value="1" <?php selected( get_option( 'wcp_location' ), '1' ); ?> >End of post</option>
 		</select>
+		<?php
+	}
+
+	public function headlineHTML() {
+		?>
+		<input type="text" name="wcp_headline" value="<?php echo esc_attr( get_option( 'wcp_headline' ) ); ?>">
 		<?php
 	}
 
