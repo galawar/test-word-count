@@ -85,6 +85,42 @@ class TestWordCount {
 			)
 		);
 
+		// register "Characters count" field.
+		add_settings_field(
+			'wcp_charcount',
+			'Characters count',
+			array( $this, 'charcountHTML' ),
+			self::OPTIONS_PAGE,
+			'wcp_main_section'
+		);
+
+		register_setting(
+			self::OPTION_GROUP,
+			'wcp_charcount',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default' => '0'
+			)
+		);
+
+		// register "Read time" field.
+		add_settings_field(
+			'wcp_readtime',
+			'Read time',
+			array( $this, 'readtimeHTML' ),
+			self::OPTIONS_PAGE,
+			'wcp_main_section'
+		);
+
+		register_setting(
+			self::OPTION_GROUP,
+			'wcp_readtime',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default' => '0'
+			)
+		);
+
 	}
 
 	public function locationHTML() {
@@ -105,6 +141,18 @@ class TestWordCount {
 	public function wordcountHTML() {
 		?>
 		<input type="checkbox" name="wcp_wordcount" value="1" <?php checked( get_option( 'wcp_wordcount' ), '1' ); ?> >
+		<?php
+	}
+
+	public function charcountHTML() {
+		?>
+		<input type="checkbox" name="wcp_charcount" value="1" <?php checked( get_option( 'wcp_charcount' ), '1' ); ?> >
+		<?php
+	}
+
+		public function readtimeHTML() {
+		?>
+		<input type="checkbox" name="wcp_readtime" value="1" <?php checked( get_option( 'wcp_readtime' ), '1' ); ?> >
 		<?php
 	}
 
