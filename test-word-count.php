@@ -49,7 +49,7 @@ class TestWordCount {
 			self::OPTION_GROUP,
 			'wcp_location',
 			array(
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => array( $this, 'sanitizeLocation' ),
 				'default' => '0'
 			)
 		);
@@ -169,6 +169,19 @@ class TestWordCount {
 		}
 		
 		return $content . $html;
+	}
+
+	public function sanitizeLocation( $input ) {
+		if ( $input != '0' && $input != '1' ) {
+			add_settings_error(
+				'wcp_location',
+				'wcp_location_error',
+				'Display location must be either beginning or end.'
+			);
+			return get_option( 'wcp_location' );
+		}
+
+		return $input;
 	}
 
 	public function locationHTML() {
