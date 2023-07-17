@@ -7,7 +7,7 @@
  Author URI: https://github.com/galawar/test-word-count.git
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -148,7 +148,7 @@ class TestWordCount {
 	}
 
 	public function updateContent( $content ) {
-		$html = '<h3>'. esc_html( get_option( 'wpc_headline', 'Post statistics' ) ) .'</h3><p>';
+		$html = '<h3>'. esc_html( get_option( 'wcp_headline', 'Post statistics' ) ) .'</h3><p>';
 
 		if ( get_option( 'wcp_wordcount', '1' ) || get_option( 'wcp_readtime', '1' ) ) {
 			$wordCount = str_word_count( strip_tags( $content ) );
