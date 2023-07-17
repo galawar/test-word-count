@@ -2,10 +2,14 @@
 /*
  Plugin Name: Test Word Count Plugin
  Description: Test plugin.
- Vaersion: 0.1
+ Version: 0.1
  Author: galawar
- Authir URI:
+ Author URI: https://github.com/galawar/test-word-count.git
 */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class TestWordCount {
 	private const OPTIONS_PAGE = 'word-count-settings-page';
