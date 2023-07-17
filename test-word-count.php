@@ -1,10 +1,13 @@
 <?php
 /*
  Plugin Name: Test Word Count Plugin
- Description: Test plugin.
- Version: 0.1
- Author: galawar
- Author URI: https://github.com/galawar/test-word-count.git
+ Plugin URI:  https://github.com/galawar/test-word-count.git
+ Description: A simple plugin that shows how many words and characters the post has and the approximate reading time.
+ Version:     0.1
+ Author:      galawar
+ Author URI:  https://github.com/galawar
+ License:     GPL-2.0+
+ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
 
 if ( !defined( 'ABSPATH' ) ) {
