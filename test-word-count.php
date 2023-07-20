@@ -241,4 +241,6 @@ class TestWordCount {
 	}
 }
 
-$wordCountPlugin = new TestWordCount();
+if ( class_exists( 'TestWordCount' ) ) {
+	$wordCountPlugin = new TestWordCount();
+}
